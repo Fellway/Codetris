@@ -55,7 +55,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <build>
         <defaultGoal>clean verify</defaultGoal>
         <pluginManagement>
