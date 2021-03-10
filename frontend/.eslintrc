@@ -1,14 +1,21 @@
 {
-  "extends": ["airbnb", "prettier"],
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "rules": {
+    "import/prefer-default-export": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }]
+  },
   "env": {
+    "browser": true,
     "jest": true
   },
-  "globals": {
-    "document": true,
-    "import": true
+  "parserOptions": {
+    "ecmaVersion": 11
   },
-  "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
-    "react/react-in-jsx-scope": "off"
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
   }
 }
