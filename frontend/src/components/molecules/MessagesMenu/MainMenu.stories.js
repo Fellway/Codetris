@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import MainMenu from './MainMenu';
+import MessagesMenu from './MessagesMenu';
 
 const BlackBackground = styled.div`
   display: flex;
@@ -12,8 +12,8 @@ const BlackBackground = styled.div`
 `;
 
 export default {
-  title: 'Components/molecules/MainMenu',
-  component: MainMenu,
+  title: 'Components/molecules/MessagesMenu',
+  component: MessagesMenu,
   decorators: [
     (Story) => (
       <BlackBackground>
@@ -23,4 +23,4 @@ export default {
   ],
 };
 
-export const Main = () => <MainMenu />;
+export const Messages = () => <MessagesMenu />;
