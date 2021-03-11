@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/MainTheme';
 import DashboardIcon from 'assets/dashboard.svg';
+import MainMenu from 'components/molecules/MainMenu/MainMenu';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <ButtonIcon active icon={DashboardIcon}>
             Dashboard
           </ButtonIcon>
+          <MainMenu />
         </>
       </ThemeProvider>
     </div>
