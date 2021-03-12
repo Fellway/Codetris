@@ -39,6 +39,7 @@ build/
 
 ### Frontend ###
 /frontend/node_modules/
+/frontend/.eslintcache
 /.pnp
 .pnp.js
 

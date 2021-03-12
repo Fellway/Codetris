@@ -3,6 +3,33 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { theme } from '../../../theme/MainTheme';
 
+const Button = styled.button`
+  display: grid;
+  grid-template-columns: 50px ${({ short }) => (short ? 'auto' : '150px')};
+  justify-items: start;
+  align-items: center;
+  background-color: ${theme.grey500};
+  border-radius: 15px;
+  transition: 0.5s;
+  border: none;
+  color: ${theme.grey300};
+  padding: 0;
+
+  .active > & {
+    color: ${theme.white} !important;
+    background-color: ${theme.colors.primary} !important;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${theme.grey400};
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 const Icon = styled.div`
   width: 50px;
   height: 50px;
@@ -10,41 +37,34 @@ const Icon = styled.div`
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 50%;
-  filter: ${({ active }) => (active ? 'brightness(1)' : 'brightness(0.7)')};
-`;
+  transition: 0.5s;
+  filter: brightness(0.5);
 
-const Button = styled.button`
-  display: grid;
-  grid-template-columns: 50px auto;
-  align-items: center;
-  background-color: ${({ active }) => (active ? theme.colors.primary : 'transparent')};
-  font-size: ${theme.fontSize.xs};
-  font-weight: ${theme.fontWeight.bold};
-  color: ${({ active }) => (active ? theme.white : theme.grey200)};
-  border: none;
-  border-radius: 15px;
+  .active > button > & {
+    filter: brightness(2);
+  }
 `;
 
 const Text = styled.span`
-  padding: ${({ children }) => (children ? '0 80px 0 5px' : '0')};
+  font-size: ${theme.fontSize.xs};
 `;
 
-const ButtonIcon = ({ active, icon, children }) => (
-  <Button active={active}>
-    <Icon active={active} icon={icon} />
-    <Text>{children}</Text>
+const ButtonIcon = ({ icon, short, children }) => (
+  <Button short={short}>
+    <Icon icon={icon} />
+    {!short && <Text>{children}</Text>}
   </Button>
 );
 
 export default ButtonIcon;
 
 ButtonIcon.propTypes = {
-  active: PropTypes.bool,
-  icon: PropTypes.string.isRequired,
   children: PropTypes.string,
+  icon: PropTypes.string.isRequired,
+  short: PropTypes.bool,
 };
 
 ButtonIcon.defaultProps = {
   children: '',
-  active: false,
+  short: false,
 };
