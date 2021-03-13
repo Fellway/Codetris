@@ -38,7 +38,7 @@
                     <!--suppress UnresolvedMavenProperty -->
                     <user>postgres</user>
                     <!--suppress UnresolvedMavenProperty -->
-                    <password>admin</password>
+                    <password>postgres</password>
                 </configuration>
             </plugin>
         </plugins>
