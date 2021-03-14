@@ -9,6 +9,3 @@ export default {
 
 export const DashboardIconEmpty = () => <ButtonIcon icon={DashboardIcon} />;
 export const DashboardIconText = () => <ButtonIcon icon={DashboardIcon}>Dashboard</ButtonIcon>;
-export const DashboardIconTextActive = () => (
-  <ButtonIcon icon={DashboardIcon}>Dashboard</ButtonIcon>
-);
