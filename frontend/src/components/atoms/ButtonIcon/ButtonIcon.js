@@ -5,7 +5,7 @@ import { theme } from '../../../theme/MainTheme';
 
 const Button = styled.button`
   display: grid;
-  grid-template-columns: 50px ${({ short }) => (short ? 'auto' : '150px')};
+  grid-template-columns: auto ${({ short }) => (short ? 'auto' : '150px')};
   justify-items: start;
   align-items: center;
   background-color: ${theme.grey500};
@@ -36,9 +36,9 @@ const Icon = styled.div`
   background-image: url(${({ icon }) => icon});
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  background-size: 50%;
+  background-size: ${({ secondary }) => (secondary ? '25%' : '50%')};
   transition: 0.5s;
-  filter: brightness(0.5);
+  filter: ${({ secondary }) => (secondary ? 'brightness(0.9)' : 'brightness(0.5)')};
 
   .active > button > & {
     filter: brightness(2);
@@ -49,9 +49,9 @@ const Text = styled.span`
   font-size: ${theme.fontSize.xs};
 `;
 
-const ButtonIcon = ({ icon, short, children }) => (
+const ButtonIcon = ({ icon, short, children, secondary }) => (
   <Button short={short}>
-    <Icon icon={icon} />
+    <Icon icon={icon} secondary={secondary} />
     {!short && <Text>{children}</Text>}
   </Button>
 );
@@ -59,6 +59,7 @@ const ButtonIcon = ({ icon, short, children }) => (
 export default ButtonIcon;
 
 ButtonIcon.propTypes = {
+  secondary: PropTypes.bool,
   children: PropTypes.string,
   icon: PropTypes.string.isRequired,
   short: PropTypes.bool,
@@ -67,4 +68,5 @@ ButtonIcon.propTypes = {
 ButtonIcon.defaultProps = {
   children: '',
   short: false,
+  secondary: false,
 };
