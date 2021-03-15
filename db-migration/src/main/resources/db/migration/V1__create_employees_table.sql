@@ -9,4 +9,3 @@ CREATE TABLE IF NOT EXISTS employees (
 	PRIMARY KEY (id),
 	UNIQUE (phone)
 );
-	
