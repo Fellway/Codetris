@@ -20,9 +20,15 @@ const Wrapper = styled.div`
   padding-right: 30px;
 `;
 
+const InputWrapper = styled.div`
+  width: 50%;
+`;
+
 const Navbar = () => (
   <Wrapper>
-    <InputIcon placeholder="search" icon={IconLoupe} />
+    <InputWrapper>
+      <InputIcon placeholder="search" icon={IconLoupe} />
+    </InputWrapper>
     <Summary />
     <ButtonIcon short secondary icon={DropdownIcon} />
   </Wrapper>
