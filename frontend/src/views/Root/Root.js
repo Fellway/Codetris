@@ -1,10 +1,10 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/MainTheme';
-import Sidebar from 'components/organisms/Sidebar/Sidebar';
-import Navbar from 'components/organisms/Navbar/Navbar';
+import Login from 'views/Login/Login';
+import Dashboard from 'views/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -12,8 +12,10 @@ function App() {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <Navbar />
-          <Sidebar />
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/login" component={Login} />
+          </Switch>
         </BrowserRouter>
       </ThemeProvider>
     </div>
