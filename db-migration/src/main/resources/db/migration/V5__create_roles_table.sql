@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS roles (
+	id int GENERATED ALWAYS AS IDENTITY,
+	role varchar(60) NOT NULL UNIQUE,
+	PRIMARY KEY (id)
+);
+
+ALTER TABLE accounts
+	ADD role_id int REFERENCES roles (id);
+	
+INSERT INTO roles (role) VALUES
+	('ADMINISTRATOR'),
+	('USER');
