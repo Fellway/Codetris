@@ -13,4 +13,11 @@ public class EmployeesApi {
     public void create(@RequestBody final Employee employee) {
         System.out.println("Hello Word");
     }
+
+    @GetMapping("/employees/{id}")
+    void employeeId(@PathVariable Long id){
+        System.out.println(id);
+    }
+
+
 }
