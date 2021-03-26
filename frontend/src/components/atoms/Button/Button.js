@@ -1,9 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 import { theme } from 'theme/MainTheme';
-import PropTypes from 'prop-types';
 
-const Wrapper = styled.button`
+const Button = styled.button`
   width: 200px;
   height: 45px;
   border-radius: 50px;
@@ -23,10 +21,4 @@ const Wrapper = styled.button`
   }
 `;
 
-const Button = ({ children }) => <Wrapper> {children}</Wrapper>;
-
 export default Button;
-
-Button.propTypes = {
-  children: PropTypes.string.isRequired,
-};
