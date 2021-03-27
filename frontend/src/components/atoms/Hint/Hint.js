@@ -1,17 +1,23 @@
 import styled from 'styled-components';
 import { theme } from 'theme/MainTheme';
 
-const Hint = styled.span`
-  color: ${({ dark }) => (dark ? theme.colors.primary : theme.grey500)};
+const handleColorType = (color) => {
+  switch (color) {
+    case 'dark':
+      return theme.colors.primary;
+    case 'error':
+      return theme.colors.red;
+    default:
+      return theme.grey500;
+  }
+};
+
+const Hint = styled.div`
+  color: ${({ color }) => handleColorType(color)};
   letter-spacing: 1px;
   font-size: ${theme.fontSize.xs};
-  width: fit-content;
-  float: right;
   padding-top: 15px;
-
-  :hover {
-    cursor: pointer;
-  }
+  text-align: ${({ center }) => (center ? 'center' : '')};
 `;
 
 export default Hint;

@@ -1,7 +1,8 @@
-import { AUTH_SUCCESS, LOGOUT_REQUEST } from 'actions/index';
+import { AUTH_FAILURE, AUTH_SUCCESS, LOGOUT_REQUEST } from 'actions/index';
 
 const initialState = {
   token: localStorage.getItem('token'),
+  error: '',
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -13,6 +14,14 @@ const rootReducer = (state = initialState, action) => {
         token: action.payload.data.token,
       };
     }
+
+    case AUTH_FAILURE: {
+      return {
+        ...state,
+        error: action.err.message,
+      };
+    }
+
     case LOGOUT_REQUEST: {
       localStorage.removeItem('token');
       return {
