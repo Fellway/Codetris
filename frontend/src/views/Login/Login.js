@@ -38,10 +38,20 @@ const LoginForm = styled(Form)`
   background-color: rgba(0, 0, 0, 0.85);
   border-radius: 10px;
   padding: 50px;
-  display: grid;
-  justify-items: center;
-  row-gap: 40px;
   width: 100%;
+`;
+
+const StyledIconInput = styled(IconInput)`
+  :first-child {
+    margin-bottom: 25px;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  margin-top: 30px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const AppName = styled.div`
@@ -50,7 +60,7 @@ const AppName = styled.div`
   font-weight: ${theme.fontWeight.bold};
 `;
 
-const Login = ({ token, authenticate }) => (
+const Login = ({ token, error, authenticate }) => (
   <LoginPage>
     <Wrapper>
       <AppName>Codetris</AppName>
@@ -66,7 +76,7 @@ const Login = ({ token, authenticate }) => (
           }
           return (
             <LoginForm onSubmit={handleSubmit}>
-              <IconInput
+              <StyledIconInput
                 type="text"
                 name="username"
                 dark
@@ -76,7 +86,7 @@ const Login = ({ token, authenticate }) => (
                 onBlur={handleBlur}
                 value={values.username}
               />
-              <IconInput
+              <StyledIconInput
                 type="password"
                 name="password"
                 dark
@@ -86,8 +96,16 @@ const Login = ({ token, authenticate }) => (
                 onBlur={handleBlur}
                 value={values.password}
               />
-              <Button type="submit">Sign In</Button>
-              <Hint dark> Forgot password?</Hint>
+              {error && (
+                <Hint center color="error">
+                  {error}
+                </Hint>
+              )}
+              <StyledButton type="submit">Sign In</StyledButton>
+              <Hint center color="dark">
+                {' '}
+                Forgot password?
+              </Hint>
             </LoginForm>
           );
         }}
@@ -96,8 +114,9 @@ const Login = ({ token, authenticate }) => (
   </LoginPage>
 );
 
-const mapStateToProps = ({ token = null }) => ({
+const mapStateToProps = ({ token = null, error = null }) => ({
   token,
+  error,
 });
 
 const mapDsipatchToProps = (dispatch) => ({
@@ -108,9 +127,11 @@ export default connect(mapStateToProps, mapDsipatchToProps)(Login);
 
 Login.propTypes = {
   token: propTypes.string,
+  error: propTypes.string,
   authenticate: propTypes.func.isRequired,
 };
 
 Login.defaultProps = {
   token: '',
+  error: '',
 };

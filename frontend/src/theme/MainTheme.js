@@ -3,6 +3,7 @@ export const theme = {
     primary: 'hsl(258, 100%, 65%)',
     secondary: 'hsl(228, 91%, 60%)',
     tertiary: 'hsl(106, 47%, 64%)',
+    red: 'hsl(0, 100%, 60%)',
   },
   grey100: 'hsl(0, 0%, 90%)',
   grey200: 'hsl(0, 0%, 70%)',
