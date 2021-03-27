@@ -1,13 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { theme } from '../../../theme/MainTheme';
 
-const Wrapper = styled.div`
-  width: 100%;
-`;
-
-const Input = styled.input`
+const InputIcon = styled.input`
   width: 100%;
   height: 40px;
   border: 1px solid ${theme.colors.primary};
@@ -31,39 +25,4 @@ const Input = styled.input`
   }
 `;
 
-const Hint = styled.span`
-  color: ${({ dark }) => (dark ? theme.colors.primary : theme.grey500)};
-  letter-spacing: 1px;
-  font-size: ${theme.fontSize.xs};
-  width: fit-content;
-  float: right;
-  padding-top: 15px;
-
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const InputIcon = ({ hint, dark, placeholder, icon, type }) => (
-  <Wrapper>
-    <Input type={type} dark={dark} placeholder={placeholder} icon={icon} />
-    {hint && <Hint dark={dark}>{hint}</Hint>}
-  </Wrapper>
-);
-
 export default InputIcon;
-
-InputIcon.propTypes = {
-  hint: PropTypes.string,
-  type: PropTypes.string,
-  dark: PropTypes.bool,
-  placeholder: PropTypes.string,
-  icon: PropTypes.string.isRequired,
-};
-
-InputIcon.defaultProps = {
-  hint: '',
-  type: 'text',
-  placeholder: '',
-  dark: false,
-};

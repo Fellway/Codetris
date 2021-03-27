@@ -6,6 +6,12 @@ import IconInput from 'components/atoms/InputIcon/InputIcon';
 import UserIcon from 'assets/user.svg';
 import KeyIcon from 'assets/key.svg';
 import Button from 'components/atoms/Button/Button';
+import { Formik, Form } from 'formik';
+import Hint from 'components/atoms/Hint/Hint';
+import { connect } from 'react-redux';
+import { authenticate as authenticateAction } from 'actions';
+import propTypes from 'prop-types';
+import { Redirect } from 'react-router';
 
 const LoginPage = styled.div`
   width: 100%;
@@ -18,7 +24,7 @@ const LoginPage = styled.div`
 const Wrapper = styled.div`
   min-width: 300px;
   width: 80%;
-  max-width: 400px;
+  max-width: 350px;
   position: absolute;
   display: grid;
   row-gap: 30px;
@@ -28,7 +34,7 @@ const Wrapper = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const LoginForm = styled.div`
+const LoginForm = styled(Form)`
   background-color: rgba(0, 0, 0, 0.85);
   border-radius: 10px;
   padding: 50px;
@@ -44,23 +50,67 @@ const AppName = styled.div`
   font-weight: ${theme.fontWeight.bold};
 `;
 
-const Login = () => (
+const Login = ({ token, authenticate }) => (
   <LoginPage>
     <Wrapper>
       <AppName>Codetris</AppName>
-      <LoginForm>
-        <IconInput dark icon={UserIcon} placeholder="login" />
-        <IconInput
-          hint="Forgot password?"
-          type="password"
-          dark
-          icon={KeyIcon}
-          placeholder="password"
-        />
-        <Button>Sign In</Button>
-      </LoginForm>
+      <Formik
+        initialValues={{ username: '', password: '' }}
+        onSubmit={({ username, password }) => {
+          authenticate(username, password);
+        }}
+      >
+        {({ values, handleChange, handleBlur, handleSubmit }) => {
+          if (token) {
+            return <Redirect to="/" />;
+          }
+          return (
+            <LoginForm onSubmit={handleSubmit}>
+              <IconInput
+                type="text"
+                name="username"
+                dark
+                icon={UserIcon}
+                placeholder="login"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.username}
+              />
+              <IconInput
+                type="password"
+                name="password"
+                dark
+                icon={KeyIcon}
+                placeholder="password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+              />
+              <Button type="submit">Sign In</Button>
+              <Hint dark> Forgot password?</Hint>
+            </LoginForm>
+          );
+        }}
+      </Formik>
     </Wrapper>
   </LoginPage>
 );
 
-export default Login;
+const mapStateToProps = ({ token = null }) => ({
+  token,
+});
+
+const mapDsipatchToProps = (dispatch) => ({
+  authenticate: (username, password) => dispatch(authenticateAction(username, password)),
+});
+
+export default connect(mapStateToProps, mapDsipatchToProps)(Login);
+
+Login.propTypes = {
+  token: propTypes.string,
+  authenticate: propTypes.func.isRequired,
+};
+
+Login.defaultProps = {
+  token: '',
+};

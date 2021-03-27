@@ -35,16 +35,11 @@ public class AuthenticationController {
 
     @PostMapping("/auth")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody final JwtRequest authenticationRequest) throws Exception {
-        authenticate(authenticationRequest.getLogin(), authenticationRequest.getPassword());
+        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getLogin());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
         return ResponseEntity.ok(new JwtResponse(jwtTokenUtils.generateToken(userDetails)));
-    }
-
-    @GetMapping("/api/test")
-    public String test() {
-        return "Hello world";
     }
 
     private void authenticate(String username, String password) throws Exception {
