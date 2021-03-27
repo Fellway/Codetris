@@ -19,6 +19,7 @@ function App() {
             <Switch>
               <Route exact path="/login" component={Login} />
               <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/logout" component={Login} />
             </Switch>
           </BrowserRouter>
         </ThemeProvider>
