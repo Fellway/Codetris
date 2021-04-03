@@ -8,6 +8,7 @@ import Dashboard from 'views/Dashboard/Dashboard';
 import store from 'store';
 import { Provider } from 'react-redux';
 import PrivateRoute from 'views/PrivateRoute/PrivateRoute';
+import Projects from 'views/Projects/Projects';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Switch>
               <Route exact path="/login" component={Login} />
               <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/projects" component={Projects} />
               <PrivateRoute exact path="/logout" component={Login} />
             </Switch>
           </BrowserRouter>
