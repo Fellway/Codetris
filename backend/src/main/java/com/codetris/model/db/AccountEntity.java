@@ -10,11 +10,9 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "accounts")
-public class Account {
+public class AccountEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +31,7 @@ public class Account {
     @Column(name = "date_of_registration")
     private LocalDate dateOfRegistration;
 
-    @Column(name = " login_attemps")
+    @Column(name = " login_attempts")
     private Integer loginAttempts;
 
     @Column(name = "last_login")
@@ -41,4 +39,8 @@ public class Account {
 
     @Column(name = "photo")
     private String photo;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    private EmployeeEntity employee;
 }

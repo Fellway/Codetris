@@ -39,7 +39,7 @@ public class AuthenticationController {
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
-        return ResponseEntity.ok(new JwtResponse(jwtTokenUtils.generateToken(userDetails)));
+        return ResponseEntity.ok(new JwtResponse(jwtTokenUtils.generateToken(userDetails), jwtTokenUtils.generateRefreshToken(userDetails)));
     }
 
     private void authenticate(String username, String password) throws Exception {

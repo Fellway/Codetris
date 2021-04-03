@@ -1,5 +1,5 @@
 package com.codetris.dto.response;
 
-public class Employee {
+public class EmployeeResponse {
     //Jak na razie pusta ;)
 }

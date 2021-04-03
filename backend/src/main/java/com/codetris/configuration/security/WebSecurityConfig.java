@@ -1,5 +1,6 @@
 package com.codetris.configuration.security;
 
+import com.codetris.configuration.filter.FilterExceptionHandler;
 import com.codetris.configuration.filter.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -29,11 +30,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private UserDetailsService userDetailsService;
     private JwtRequestFilter jwtRequestFilter;
+    private FilterExceptionHandler filterExceptionHandler;
 
     @Autowired
-    public WebSecurityConfig(final UserDetailsService userDetailsService, final JwtRequestFilter jwtRequestFilter) {
+    public WebSecurityConfig(final UserDetailsService userDetailsService, final JwtRequestFilter jwtRequestFilter,
+                             final FilterExceptionHandler filterExceptionHandler) {
         this.userDetailsService = userDetailsService;
         this.jwtRequestFilter = jwtRequestFilter;
+        this.filterExceptionHandler = filterExceptionHandler;
     }
 
     @Override
@@ -59,6 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(filterExceptionHandler, JwtRequestFilter.class);
     }
 
     @Bean
