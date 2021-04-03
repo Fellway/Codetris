@@ -18,7 +18,7 @@ const BarWrapper = styled.div`
 
 const Progress = styled.div`
   height: 5px;
-  background-color: ${theme.colors.green};
+  background-color: ${theme.colors.primary};
   border-radius: 50px 0 0 50px;
 `;
 
