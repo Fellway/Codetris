@@ -1,6 +1,6 @@
 package com.codetris.configuration.security;
 
-import com.codetris.model.db.Account;
+import com.codetris.model.db.AccountEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -8,10 +8,10 @@ import java.util.Collection;
 
 public class UserPrincipal implements UserDetails {
 
-    private Account account;
+    private AccountEntity accountEntity;
 
-    public UserPrincipal(final Account account) {
-        this.account = account;
+    public UserPrincipal(final AccountEntity accountEntity) {
+        this.accountEntity = accountEntity;
     }
 
     @Override
@@ -21,12 +21,12 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return account.getPassword();
+        return accountEntity.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return account.getLogin();
+        return accountEntity.getLogin();
     }
 
     @Override
