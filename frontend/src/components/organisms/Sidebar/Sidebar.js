@@ -14,6 +14,7 @@ import { NavLink } from 'react-router-dom';
 import LogoImage from 'assets/logo.png';
 
 const Wrapper = styled.div`
+  z-index: 2;
   display: grid;
   width: fit-content;
   padding: 0 20px;
@@ -70,7 +71,7 @@ const NavigationLink = styled(NavLink)`
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isClosed: false };
+    this.state = { isClosed: true };
   }
 
   render() {
