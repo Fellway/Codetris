@@ -1,36 +1,40 @@
-import InputIcon from 'components/atoms/InputIcon/InputIcon';
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from 'theme/MainTheme';
-import IconLoupe from 'assets/loupe.svg';
 import Summary from 'components/molecules/Summary/Summary';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import DropdownIcon from 'assets/dropdown.svg';
+import InputIcon from 'components/atoms/InputIcon/InputIcon';
+import IconLoupe from 'assets/loupe.svg';
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto auto;
   align-items: center;
   position: fixed;
-  background-color: ${theme.grey500};
+  background-color: ${theme.grey450};
   width: 100%;
   height: 60px;
   z-index: 1;
-  padding-left: 300px;
-  padding-right: 30px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding-left: 130px;
 `;
 
-const InputWrapper = styled.div`
-  width: 50%;
+const SummaryWrapper = styled.div`
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  position: absolute;
+  height: 60px;
+  right: 0;
+  padding-right: 40px;
 `;
 
 const Navbar = () => (
   <Wrapper>
-    <InputWrapper>
-      <InputIcon placeholder="search" icon={IconLoupe} />
-    </InputWrapper>
-    <Summary />
-    <ButtonIcon short secondary icon={DropdownIcon} />
+    <InputIcon placeholder="Quick search" icon={IconLoupe} />
+    <SummaryWrapper>
+      <Summary />
+      <ButtonIcon short secondary icon={DropdownIcon} />
+    </SummaryWrapper>
   </Wrapper>
 );
 

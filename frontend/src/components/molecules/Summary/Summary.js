@@ -20,7 +20,7 @@ const Text = styled.p`
 
 const Summary = () => (
   <Wrapper>
-    <Avatar url="https://picsum.photos/200" />
+    <Avatar circle url="https://picsum.photos/200" />
     <Text>Antony Mark</Text>
   </Wrapper>
 );

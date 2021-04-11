@@ -3,6 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { theme } from 'theme/MainTheme';
 
+const handleColorType = (percent) => {
+  if (percent < 25) {
+    return theme.colors.red;
+  }
+  if (percent < 75) {
+    return theme.colors.orange;
+  }
+  return theme.colors.green;
+};
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
@@ -18,7 +27,7 @@ const BarWrapper = styled.div`
 
 const Progress = styled.div`
   height: 5px;
-  background-color: ${theme.colors.primary};
+  background-color: ${({ percent }) => handleColorType(percent)};
   border-radius: 50px 0 0 50px;
 `;
 
@@ -39,7 +48,7 @@ const Text = styled.div`
 const ProgressBar = ({ children }) => (
   <Wrapper>
     <BarWrapper percent={children}>
-      <Progress />
+      <Progress percent={children} />
       <LeftBar />
     </BarWrapper>
     <Text lm={children}>{children}%</Text>

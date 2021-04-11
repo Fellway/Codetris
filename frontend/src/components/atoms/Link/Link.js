@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   align-items: center;
   grid-template-columns: 25px auto;
   color: ${theme.grey200};
-  font-size: ${theme.fontSize.s};
+  font-size: ${theme.fontSize.xs};
 
   &:hover {
     cursor: pointer;

@@ -8,6 +8,7 @@ import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import ProgressBar from 'components/atoms/ProgressBar/ProgressBar';
 import LeftTimeLabel from 'components/atoms/LeftTimeLabel/LeftTimeLabel';
 import Contributors from 'components/molecules/Contributors/Contributors';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   color: ${theme.grey100};
@@ -39,20 +40,27 @@ const Footer = styled.div`
   grid-template-columns: 1fr 1fr;
 `;
 
-const ProjectCard = () => (
+const ProjectCard = ({ name, avatar, link, description, progress, leftTime }) => (
   <Wrapper>
-    <StyledAvatar url="https://ocs-pl.oktawave.com/v1/AUTH_4e9ef52d-3acd-4c38-88cc-b3f63fd7884b/GP-pracodawcy/cache/profile_logo/907/58e/2738bfca9dd9af7ef08b306136865460f3130e7980293b9b1b50010b06.png" />
-    <Header s>Sports Interactive</Header>
-    <Link href="www.sports-interactive.com">sports-interactive.com</Link>
-    <StyledParagraph>
-      Web resources which contains all about transfers in the world of sports
-    </StyledParagraph>
-    <ProgressBar>65</ProgressBar>
+    <StyledAvatar url={avatar} />
+    <Header s>{name}</Header>
+    <Link href="www.sports-interactive.com">{link}</Link>
+    <StyledParagraph>{description}</StyledParagraph>
+    <ProgressBar>{progress}</ProgressBar>
     <Footer>
-      <LeftTimeLabel>2</LeftTimeLabel>
+      <LeftTimeLabel>{leftTime}</LeftTimeLabel>
       <Contributors />
     </Footer>
   </Wrapper>
 );
 
 export default ProjectCard;
+
+ProjectCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  progress: PropTypes.number.isRequired,
+  leftTime: PropTypes.number.isRequired,
+};

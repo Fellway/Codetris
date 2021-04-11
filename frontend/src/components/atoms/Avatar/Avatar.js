@@ -6,7 +6,7 @@ const Avatar = styled.div`
   background-image: url(${({ url }) => url});
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  border-radius: 15px;
+  border-radius: ${({ circle }) => (circle ? '50%' : '15px')};
 `;
 
 export default Avatar;
