@@ -4,6 +4,26 @@ import ScheduleIcon from '@material-ui/icons/Schedule';
 import PropTypes from 'prop-types';
 import { theme } from 'theme/MainTheme';
 
+const handleBackgroundColor = (timeLeft) => {
+  if (timeLeft < 3) {
+    return theme.colors.lightRed;
+  }
+  if (timeLeft < 6) {
+    return theme.colors.lightOrange;
+  }
+  return theme.colors.lightGreen;
+};
+
+const handleFontColor = (timeLeft) => {
+  if (timeLeft < 3) {
+    return theme.colors.red;
+  }
+  if (timeLeft < 6) {
+    return theme.colors.orange;
+  }
+  return theme.colors.green;
+};
+
 const Wrapper = styled.div`
   display: grid;
   align-items: center;
@@ -11,13 +31,13 @@ const Wrapper = styled.div`
   grid-template-columns: 20px auto;
   width: fit-content;
   border-radius: 5px;
-  background-color: ${theme.colors.lightRed};
+  background-color: ${({ timeLeft }) => handleBackgroundColor(Number(timeLeft))};
   padding: 5px 10px;
-  color: ${theme.colors.red};
+  color: ${({ timeLeft }) => handleFontColor(Number(timeLeft))};
 `;
 
 const LeftTimeLabel = ({ children }) => (
-  <Wrapper>
+  <Wrapper timeLeft={children}>
     <ScheduleIcon fontSize="inherit" />
     <p> {children} days left</p>
   </Wrapper>

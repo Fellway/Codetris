@@ -8,7 +8,7 @@ const Button = styled.button`
   grid-template-columns: auto ${({ short }) => (short ? 'auto' : '150px')};
   justify-items: start;
   align-items: center;
-  background-color: ${theme.grey500};
+  background-color: transparent;
   border-radius: 15px;
   transition: 0.5s;
   border: none;
@@ -22,7 +22,7 @@ const Button = styled.button`
 
   &:hover {
     cursor: pointer;
-    background-color: ${theme.grey400};
+    background-color: ${({ transparent }) => (transparent ? theme.grey500 : theme.grey400)};
   }
 
   &:focus {
@@ -49,8 +49,8 @@ const Text = styled.span`
   font-size: ${theme.fontSize.xs};
 `;
 
-const ButtonIcon = ({ icon, short, children, secondary }) => (
-  <Button short={short}>
+const ButtonIcon = ({ icon, short, children, secondary, transparent }) => (
+  <Button short={short} transparent={transparent}>
     <Icon icon={icon} secondary={secondary} />
     {!short && <Text>{children}</Text>}
   </Button>
@@ -63,10 +63,12 @@ ButtonIcon.propTypes = {
   children: PropTypes.string,
   icon: PropTypes.string.isRequired,
   short: PropTypes.bool,
+  transparent: PropTypes.bool,
 };
 
 ButtonIcon.defaultProps = {
   children: '',
   short: false,
   secondary: false,
+  transparent: false,
 };
