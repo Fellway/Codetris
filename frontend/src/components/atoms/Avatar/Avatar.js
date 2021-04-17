@@ -5,7 +5,8 @@ const Avatar = styled.div`
   width: 40px;
   background-image: url(${({ url }) => url});
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
+  background-position: center center;
   border-radius: ${({ circle }) => (circle ? '50%' : '15px')};
 `;
 
