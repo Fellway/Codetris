@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/employees")
-public class EmployeesApi {
+@RequestMapping("/employees")
+public class EmployeesController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
