@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class FilterExceptionHandler extends OncePerRequestFilter {
 
+    private final HandlerExceptionResolver resolver;
+
     @Autowired
-    @Qualifier("handlerExceptionResolver")
-    private HandlerExceptionResolver resolver;
+    public FilterExceptionHandler(@Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
+        this.resolver = resolver;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
