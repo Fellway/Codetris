@@ -85,6 +85,6 @@ ProjectCard.propTypes = {
   avatar: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  progress: PropTypes.number.isRequired,
+  progress: PropTypes.string.isRequired,
   leftTime: PropTypes.number.isRequired,
 };
