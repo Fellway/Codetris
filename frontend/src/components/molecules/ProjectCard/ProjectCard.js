@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { theme } from 'theme/MainTheme';
 import Avatar from 'components/atoms/Avatar/Avatar';
@@ -9,6 +9,7 @@ import ProgressBar from 'components/atoms/ProgressBar/ProgressBar';
 import LeftTimeLabel from 'components/atoms/LeftTimeLabel/LeftTimeLabel';
 import Contributors from 'components/molecules/Contributors/Contributors';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
 
 const Wrapper = styled.div`
   color: ${theme.grey100};
@@ -40,23 +41,46 @@ const Footer = styled.div`
   grid-template-columns: 1fr 1fr;
 `;
 
-const ProjectCard = ({ name, avatar, link, description, progress, leftTime }) => (
-  <Wrapper>
-    <StyledAvatar url={avatar} />
-    <Header s>{name}</Header>
-    <Link href="www.sports-interactive.com">{link}</Link>
-    <StyledParagraph>{description}</StyledParagraph>
-    <ProgressBar>{progress}</ProgressBar>
-    <Footer>
-      <LeftTimeLabel>{leftTime}</LeftTimeLabel>
-      <Contributors />
-    </Footer>
-  </Wrapper>
-);
+class ProjectCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { redirect: false };
+    this.onCardClick = this.onCardClick.bind(this);
+  }
+
+  onCardClick() {
+    this.setState({
+      redirect: true,
+    });
+  }
+
+  render() {
+    const { id, name, avatar, link, description, progress, leftTime } = this.props;
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to={`projects/${id}`} />;
+    }
+    return (
+      <Wrapper onClick={this.onCardClick}>
+        <StyledAvatar url={avatar} />
+        <Header s>{name}</Header>
+        <Link href="www.sports-interactive.com">{link}</Link>
+        <StyledParagraph>{description}</StyledParagraph>
+        <ProgressBar>{progress}</ProgressBar>
+        <Footer>
+          <LeftTimeLabel>{leftTime}</LeftTimeLabel>
+          <Contributors />
+        </Footer>
+      </Wrapper>
+    );
+  }
+}
 
 export default ProjectCard;
 
 ProjectCard.propTypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
