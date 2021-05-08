@@ -1,8 +1,9 @@
-import { AUTH_FAILURE, AUTH_SUCCESS, LOGOUT_REQUEST } from 'actions/index';
+import { AUTH_FAILURE, AUTH_SUCCESS, LOGOUT_REQUEST, FETCH_SUCCESS } from 'actions/index';
 
 const initialState = {
   token: localStorage.getItem('token'),
   error: '',
+  projects: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -27,6 +28,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         token: null,
+      };
+    }
+
+    case FETCH_SUCCESS: {
+      return {
+        ...state,
+        projects: action.payload.content,
       };
     }
 

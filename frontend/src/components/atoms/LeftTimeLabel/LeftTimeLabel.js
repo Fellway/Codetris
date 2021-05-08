@@ -46,5 +46,5 @@ const LeftTimeLabel = ({ children }) => (
 export default LeftTimeLabel;
 
 LeftTimeLabel.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.number.isRequired,
 };

@@ -14,6 +14,7 @@ public class ProjectMapper {
 
     private static ProjectResponse mapToDto(final ProjectEntity projectEntity) {
         return ProjectResponse.builder()
+                .id(projectEntity.getId())
                 .name(projectEntity.getName())
                 .avatar(projectEntity.getAvatar())
                 .priority(projectEntity.getPriority())

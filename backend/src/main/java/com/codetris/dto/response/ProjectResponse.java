@@ -8,6 +8,7 @@ import java.sql.Date;
 @Getter
 @Builder
 public class ProjectResponse {
+    private Integer id;
     private String name;
     private String description;
     private String avatar;
