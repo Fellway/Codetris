@@ -47,13 +47,6 @@ const Label = styled.div`
   text-align: right;
 `;
 
-const StyledHeader = styled(Header)`
-  padding: 25px;
-  border-radius: 5px;
-  background-color: ${theme.colors.primary};
-  color: white;
-`;
-
 const Footer = styled.footer`
   width: 100%;
   background-color: ${theme.grey500};
@@ -71,10 +64,30 @@ const StyledButton = styled(Button)`
   border-radius: 5px;
 `;
 
+const HeaderWrapper = styled.header`
+  padding: 25px;
+  border-radius: 5px;
+  background-color: ${theme.colors.primary};
+  color: white;
+  position: relative;
+`;
+
+const CloseButton = styled.div`
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 const Modal = () => (
   <ModalWrapper>
     <Wrapper>
-      <StyledHeader s>Add new project</StyledHeader>
+      <HeaderWrapper>
+        <Header s>Add new project</Header>
+        <CloseButton>✖</CloseButton>
+      </HeaderWrapper>
       <Form>
         <InputWithLabel>
           <Label>Name:</Label>
