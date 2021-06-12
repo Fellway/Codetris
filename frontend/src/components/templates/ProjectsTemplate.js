@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Sort } from '@material-ui/icons';
 import * as moment from 'moment';
 import PropTypes from 'prop-types';
 import Header from '../atoms/Header/Header';
 import ProjectCard from '../molecules/ProjectCard/ProjectCard';
 import AddButton from '../atoms/AddButton/AddButton';
 import Modal from '../molecules/Modal/Modal';
+import Sort from '../molecules/Sort/Sort';
 
 const Wrapper = styled.div`
   padding-right: 40px;

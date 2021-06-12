@@ -21,6 +21,10 @@ const Button = styled.button`
     cursor: pointer;
     box-shadow: 0px 0px 10px -1px ${theme.colors.primary};
   }
+
+  :focus {
+    outline: 0;
+  }
 `;
 
 export default Button;

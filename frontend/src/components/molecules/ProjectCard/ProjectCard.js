@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 
 const Wrapper = styled.div`
+  min-width: fit-content;
   color: ${theme.grey100};
   padding: 25px;
   border-radius: 10px;
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: grid;
-  grid-template-rows: auto 1fr 0.5fr;
+  grid-template-rows: auto 75px 1fr 0.5fr;
   &:hover {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.7), 0 15px 12px rgba(0, 0, 0, 0.22);
     cursor: pointer;
@@ -34,7 +35,9 @@ const StyledAvatar = styled(Avatar)`
 `;
 
 const StyledParagraph = styled(Paragraph)`
-  margin: 25px 0;
+  align-self: start;
+  padding-top: 25px;
+  padding-bottom: 25px;
 `;
 
 const Footer = styled.div`

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { theme } from 'theme/MainTheme';
 import Summary from 'components/molecules/Summary/Summary';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
@@ -16,7 +17,7 @@ const Wrapper = styled.div`
   z-index: 1;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  padding-left: 130px;
+  padding-left: ${({ isSidebarClosed }) => (!isSidebarClosed ? '280px' : '130px')};
 `;
 
 const SummaryWrapper = styled.div`
@@ -28,8 +29,8 @@ const SummaryWrapper = styled.div`
   padding-right: 40px;
 `;
 
-const Navbar = () => (
-  <Wrapper>
+const Navbar = ({ isSidebarClosed }) => (
+  <Wrapper isSidebarClosed={isSidebarClosed}>
     <InputIcon placeholder="Quick search" icon={IconLoupe} />
     <SummaryWrapper>
       <Summary />
@@ -39,3 +40,7 @@ const Navbar = () => (
 );
 
 export default Navbar;
+
+Navbar.propTypes = {
+  isSidebarClosed: PropTypes.func.isRequired,
+};

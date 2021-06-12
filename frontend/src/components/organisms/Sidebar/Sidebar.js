@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import DashboardIcon from 'assets/dashboard.svg';
 import SettingsIcon from 'assets/settings.svg';
 import CalendarIcon from 'assets/calendar.svg';
@@ -37,9 +40,9 @@ const Logo = styled.div`
 
 const Text = styled.div`
   padding: 10px;
-  color: ${theme.grey100};
   font-size: ${theme.fontSize.l};
   font-weight: ${theme.fontWeight.bold};
+  color: ${theme.grey100};
 `;
 
 const LogoWrapper = styled.div`
@@ -53,7 +56,6 @@ const LogoWrapper = styled.div`
 const Menu = styled.div`
   display: grid;
   row-gap: 10px;
-  justify-items: start;
 `;
 
 const SpaceLine = styled.hr`
@@ -68,70 +70,95 @@ const NavigationLink = styled(NavLink)`
   text-decoration: none;
 `;
 
-class Sidebar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isClosed: true };
+const Footer = styled.div`
+  height: 50px;
+  margin-bottom: 50px;
+  display: grid;
+  justify-items: end;
+  align-items: end;
+  align-self: end;
+`;
+const FooterIcon = styled.button`
+  background: none;
+  border: none;
+  color: ${theme.grey300};
+
+  :hover {
+    cursor: pointer;
   }
 
-  render() {
-    const { isClosed } = this.state;
-    return (
-      <Wrapper>
-        <LogoWrapper>
-          <Logo />
-          {!isClosed && <Text>Codetris</Text>}
-        </LogoWrapper>
-        <div>
-          <Menu>
-            <NavigationLink exact to="/">
-              <ButtonIcon short={isClosed} icon={DashboardIcon}>
-                Dashboard
-              </ButtonIcon>
-            </NavigationLink>
-            <NavigationLink to="/calendar">
-              <ButtonIcon short={isClosed} icon={CalendarIcon}>
-                Calendar
-              </ButtonIcon>
-            </NavigationLink>
-            <NavigationLink to="/projects">
-              <ButtonIcon short={isClosed} icon={ProjectIcon}>
-                Projects
-              </ButtonIcon>
-            </NavigationLink>
-            <NavigationLink to="/tasks">
-              <ButtonIcon short={isClosed} icon={TaskIcon}>
-                Tasks
-              </ButtonIcon>
-            </NavigationLink>
-            <NavigationLink to="/settings">
-              <ButtonIcon short={isClosed} icon={SettingsIcon}>
-                Settings
-              </ButtonIcon>
-            </NavigationLink>
-          </Menu>
-          <SpaceLine />
-          <Menu>
-            <NavigationLink to="/chat">
-              <ButtonIcon short={isClosed} icon={ChatIcon}>
-                Chat
-              </ButtonIcon>
-            </NavigationLink>
-            <NavigationLink to="/notifications">
-              <ButtonIcon short={isClosed} icon={NotificationIcon}>
-                Notifications
-              </ButtonIcon>
-            </NavigationLink>
-            <NavigationLink to="/emails">
-              <ButtonIcon short={isClosed} icon={EmailIcon}>
-                Emails
-              </ButtonIcon>
-            </NavigationLink>
-          </Menu>
-        </div>
-      </Wrapper>
-    );
+  :focus {
+    outline: 0;
   }
-}
+`;
+
+const Sidebar = ({ isClosed, toggleSidebar }) => (
+  <Wrapper>
+    <LogoWrapper>
+      <Logo />
+      {!isClosed && <Text>Codetris</Text>}
+    </LogoWrapper>
+    <div>
+      <Menu>
+        <NavigationLink exact to="/">
+          <ButtonIcon short={isClosed} icon={DashboardIcon}>
+            Dashboard
+          </ButtonIcon>
+        </NavigationLink>
+        <NavigationLink to="/calendar">
+          <ButtonIcon short={isClosed} icon={CalendarIcon}>
+            Calendar
+          </ButtonIcon>
+        </NavigationLink>
+        <NavigationLink to="/projects">
+          <ButtonIcon short={isClosed} icon={ProjectIcon}>
+            Projects
+          </ButtonIcon>
+        </NavigationLink>
+        <NavigationLink to="/tasks">
+          <ButtonIcon short={isClosed} icon={TaskIcon}>
+            Tasks
+          </ButtonIcon>
+        </NavigationLink>
+        <NavigationLink to="/settings">
+          <ButtonIcon short={isClosed} icon={SettingsIcon}>
+            Settings
+          </ButtonIcon>
+        </NavigationLink>
+      </Menu>
+      <SpaceLine />
+      <Menu>
+        <NavigationLink to="/chat">
+          <ButtonIcon short={isClosed} icon={ChatIcon}>
+            Chat
+          </ButtonIcon>
+        </NavigationLink>
+        <NavigationLink to="/notifications">
+          <ButtonIcon short={isClosed} icon={NotificationIcon}>
+            Notifications
+          </ButtonIcon>
+        </NavigationLink>
+        <NavigationLink to="/emails">
+          <ButtonIcon short={isClosed} icon={EmailIcon}>
+            Emails
+          </ButtonIcon>
+        </NavigationLink>
+      </Menu>
+    </div>
+    <Footer>
+      <FooterIcon onClick={toggleSidebar}>
+        {isClosed && <ArrowForwardIosIcon fontSize="large" />}
+      </FooterIcon>
+      <FooterIcon onClick={toggleSidebar}>
+        {!isClosed && <ArrowBackIosIcon fontSize="large" />}
+      </FooterIcon>
+    </Footer>
+  </Wrapper>
+);
 
 export default Sidebar;
+
+Sidebar.propTypes = {
+  isClosed: PropTypes.bool.isRequired,
+  toggleSidebar: PropTypes.func.isRequired,
+};

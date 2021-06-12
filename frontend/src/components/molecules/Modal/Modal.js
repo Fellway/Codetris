@@ -89,6 +89,10 @@ const CloseButton = styled.button`
   :hover {
     cursor: pointer;
   }
+
+  :focus {
+    outline: 0;
+  }
 `;
 
 const Modal = ({ onClose, onSave }) => (
