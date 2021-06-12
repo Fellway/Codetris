@@ -7,7 +7,7 @@ const AddButton = styled.div`
   width: 80px;
   background-image: url(${PlusIcon});
   background-repeat: no-repeat;
-  background-size: 50%;
+  background-size: 25%;
   background-color: ${theme.colors.primary};
   background-position: center center;
   border-radius: 50%;

@@ -1,11 +1,12 @@
 import React from 'react';
-import Sidebar from 'components/organisms/Sidebar/Sidebar';
-import Navbar from 'components/organisms/Navbar/Navbar';
+import UserPageTemplate from '../components/templates/UserPageTemplate';
+import DashboardTemplate from '../components/templates/DashboardTemplate';
 
 const Dashboard = () => (
   <>
-    <Sidebar />
-    <Navbar />
+    <UserPageTemplate>
+      <DashboardTemplate />
+    </UserPageTemplate>
   </>
 );
 
