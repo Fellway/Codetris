@@ -12,12 +12,9 @@ const handleColorType = (percent) => {
   }
   return theme.colors.green;
 };
+
 const Wrapper = styled.div`
-  position: relative;
   width: 100%;
-  height: 5px;
-  margin-top: 45px;
-  margin-bottom: 25px;
 `;
 
 const BarWrapper = styled.div`
@@ -38,20 +35,19 @@ const LeftBar = styled.div`
 `;
 
 const Text = styled.div`
-  position: absolute;
   top: -20px;
-  left: ${({ lm }) => `${lm}%`};
+  margin-bottom: 10px;
+  margin-left: ${({ lm }) => `${lm}%`};
   font-size: ${theme.fontSize.xs};
-  transform: translateX(-50%);
 `;
 
 const ProgressBar = ({ children }) => (
   <Wrapper>
+    <Text lm={children}>{children}%</Text>
     <BarWrapper percent={children}>
       <Progress percent={children} />
       <LeftBar />
     </BarWrapper>
-    <Text lm={children}>{children}%</Text>
   </Wrapper>
 );
 

@@ -19,7 +19,8 @@ const Wrapper = styled.div`
   border: 1px solid ${theme.grey400};
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
+  display: grid;
+  grid-template-rows: auto 1fr 0.5fr;
   &:hover {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.7), 0 15px 12px rgba(0, 0, 0, 0.22);
     cursor: pointer;
@@ -39,6 +40,8 @@ const StyledParagraph = styled(Paragraph)`
 const Footer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+  align-items: center;
 `;
 
 class ProjectCard extends Component {
@@ -64,8 +67,10 @@ class ProjectCard extends Component {
     return (
       <Wrapper onClick={this.onCardClick}>
         <StyledAvatar url={avatar} />
-        <Header s>{name}</Header>
-        <Link href="www.sports-interactive.com">{link}</Link>
+        <div>
+          <Header s>{name}</Header>
+          <Link href="www.sports-interactive.com">{link}</Link>
+        </div>
         <StyledParagraph>{description}</StyledParagraph>
         <ProgressBar>{progress}</ProgressBar>
         <Footer>

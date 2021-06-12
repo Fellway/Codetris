@@ -15,6 +15,7 @@ import DoneIcon from '@material-ui/icons/DoneOutlined';
 import AutorenewIcon from '@material-ui/icons/AutorenewOutlined';
 import AssignmentIcon from '@material-ui/icons/AssignmentOutlined';
 import Modal from '../molecules/Modal/Modal';
+import AddButton from '../atoms/AddButton/AddButton';
 
 const Wrapper = styled.div`
   color: ${theme.grey200};
@@ -80,53 +81,71 @@ const TaskGrid = styled.div`
   grid-gap: 10px;
 `;
 
-const ProjectDetailsTemplate = () => (
-  <Container>
-    <Modal />
-    <Wrapper>
-      <NameWrapper>
-        <StyledAvatar url="https://i.pinimg.com/736x/94/40/b7/9440b7c3ab43d66b06bed08af7b02434.jpg" />
-        <div>
-          <Paragraph>In progress</Paragraph>
-          <Header>Sports Interactive</Header>
-          <Link href="www.sports-interactive.com">www.sports-interactive.com</Link>
-        </div>
-      </NameWrapper>
-      <DatesWrapper>
-        <DateTextIcon>
-          <TodayIcon />
-          <Paragraph>Start day: 11.11.2021</Paragraph>
-        </DateTextIcon>
-        <DateTextIcon>
-          <EventIcon />
-          <Paragraph>Deadline: 11.1.2022</Paragraph>
-        </DateTextIcon>
-        <DateTextIcon>
-          <ScheduleIcon />
-          <Paragraph>Days left: 365</Paragraph>
-        </DateTextIcon>
-      </DatesWrapper>
-      <Overwiev>
-        <Header s>Overview:</Header>
-        <Paragraph>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-          been the industrys standard dummy text ever since the 1500s, when an unknown printer took
-          a galley of type and scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting, remaining essentially
-          unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-          Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-          PageMaker including versions of Lorem Ipsum.
-        </Paragraph>
-        <Paragraph>
-          It is a long established fact that a reader will be distracted by the readable content of
-          a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-          more-or-less normal distribution of letters, as opposed to using Content here, content
-          here, making it look like readable English. Many desktop publishing packages and web page
-          editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will
-          uncover many web sites still in their infancy. Various versions have evolved over the
-          years, sometimes by accident, sometimes on purpose (injected humour and the like).
-        </Paragraph>
-        {/* <Paragraph>
+class ProjectDetailsTemplate extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isModalOpen: false };
+
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    this.setState((prevState) => ({
+      isModalOpen: !prevState.isModalOpen,
+    }));
+  }
+
+  render() {
+    const { isModalOpen } = this.state;
+    return (
+      <Container>
+        {isModalOpen && <Modal onClose={this.toggleModal} onSave={this.toggleModal} />}
+        <AddButton onClick={this.toggleModal} />
+        <Wrapper>
+          <NameWrapper>
+            <StyledAvatar url="https://i.pinimg.com/736x/94/40/b7/9440b7c3ab43d66b06bed08af7b02434.jpg" />
+            <div>
+              <Paragraph>In progress</Paragraph>
+              <Header>Sports Interactive</Header>
+              <Link href="www.sports-interactive.com">www.sports-interactive.com</Link>
+            </div>
+          </NameWrapper>
+          <DatesWrapper>
+            <DateTextIcon>
+              <TodayIcon />
+              <Paragraph>Start day: 11.11.2021</Paragraph>
+            </DateTextIcon>
+            <DateTextIcon>
+              <EventIcon />
+              <Paragraph>Deadline: 11.1.2022</Paragraph>
+            </DateTextIcon>
+            <DateTextIcon>
+              <ScheduleIcon />
+              <Paragraph>Days left: 365</Paragraph>
+            </DateTextIcon>
+          </DatesWrapper>
+          <Overwiev>
+            <Header s>Overview:</Header>
+            <Paragraph>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+              has been the industrys standard dummy text ever since the 1500s, when an unknown
+              printer took a galley of type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into electronic typesetting,
+              remaining essentially unchanged. It was popularised in the 1960s with the release of
+              Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </Paragraph>
+            <Paragraph>
+              It is a long established fact that a reader will be distracted by the readable content
+              of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
+              more-or-less normal distribution of letters, as opposed to using Content here, content
+              here, making it look like readable English. Many desktop publishing packages and web
+              page editors now use Lorem Ipsum as their default model text, and a search for lorem
+              ipsum will uncover many web sites still in their infancy. Various versions have
+              evolved over the years, sometimes by accident, sometimes on purpose (injected humour
+              and the like).
+            </Paragraph>
+            {/* <Paragraph>
           There are many variations of passages of Lorem Ipsum available, but the majority have
           suffered alteration in some form, by injected humour, or randomised words which dont look
           even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be
@@ -137,58 +156,61 @@ const ProjectDetailsTemplate = () => (
           reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected
           humour, or non-characteristic words etc.
         </Paragraph> */}
-      </Overwiev>
-      <Header s>Collaborators:</Header>
-      <Collaborators>
-        <Contributor url="https://t4.ftcdn.net/jpg/00/76/27/53/360_F_76275384_mRNrmAI89UPWoWeUJfCL9CptRxg3cEoF.jpg">
-          Lorem ipsum{' '}
-        </Contributor>
-        <Contributor url="https://image.shutterstock.com/image-photo/close-portrait-smiling-handsome-man-260nw-1011569245.jpg">
-          Lorem ipsum{' '}
-        </Contributor>
-        <Contributor url="https://media.gettyimages.com/photos/confident-young-man-wearing-purple-tshirt-picture-id1092658864?s=612x612">
-          Lorem ipsum{' '}
-        </Contributor>
-        <Contributor url="https://media.istockphoto.com/photos/serene-beauty-picture-id1083617440?k=6&m=1083617440&s=612x612&w=0&h=wLq7N87zwUamnN1g1BebCxYdt3BVU8bhEyCSymDFyFI=">
-          Lorem ipsum{' '}
-        </Contributor>
-        <Contributor url="https://media.gettyimages.com/photos/bearded-businessman-against-gray-background-picture-id1179627332?s=612x612">
-          Lorem ipsum{' '}
-        </Contributor>
-        <Contributor url="https://thumbor.forbes.com/thumbor/2441x2240/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1176382466%2F0x0.jpg%3FcropX1%3D2439%26cropX2%3D4880%26cropY1%3D307%26cropY2%3D2547">
-          Lorem ipsum{' '}
-        </Contributor>
-      </Collaborators>
-    </Wrapper>
-    <Tasks>
-      <Label icon={<AssignmentIcon />}>To do</Label>
-      <TaskGrid>
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-      </TaskGrid>
-      <Label icon={<AutorenewIcon />}>In progress</Label>
-      <TaskGrid>
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-      </TaskGrid>
-      <Label icon={<DoneIcon />}>Completed</Label>
-      <TaskGrid>
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-      </TaskGrid>
-    </Tasks>
-  </Container>
-);
+          </Overwiev>
+          <Header s>Collaborators:</Header>
+          <Collaborators>
+            <Contributor url="https://t4.ftcdn.net/jpg/00/76/27/53/360_F_76275384_mRNrmAI89UPWoWeUJfCL9CptRxg3cEoF.jpg">
+              Lorem ipsum{' '}
+            </Contributor>
+            <Contributor url="https://image.shutterstock.com/image-photo/close-portrait-smiling-handsome-man-260nw-1011569245.jpg">
+              Lorem ipsum{' '}
+            </Contributor>
+            <Contributor url="https://media.gettyimages.com/photos/confident-young-man-wearing-purple-tshirt-picture-id1092658864?s=612x612">
+              Lorem ipsum{' '}
+            </Contributor>
+            <Contributor url="https://media.istockphoto.com/photos/serene-beauty-picture-id1083617440?k=6&m=1083617440&s=612x612&w=0&h=wLq7N87zwUamnN1g1BebCxYdt3BVU8bhEyCSymDFyFI=">
+              Lorem ipsum{' '}
+            </Contributor>
+            <Contributor url="https://media.gettyimages.com/photos/bearded-businessman-against-gray-background-picture-id1179627332?s=612x612">
+              Lorem ipsum{' '}
+            </Contributor>
+            <Contributor url="https://thumbor.forbes.com/thumbor/2441x2240/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1176382466%2F0x0.jpg%3FcropX1%3D2439%26cropX2%3D4880%26cropY1%3D307%26cropY2%3D2547">
+              Lorem ipsum{' '}
+            </Contributor>
+          </Collaborators>
+        </Wrapper>
+        <Tasks>
+          <Label icon={<AssignmentIcon />}>To do</Label>
+          <TaskGrid>
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+          </TaskGrid>
+          <Label icon={<AutorenewIcon />}>In progress</Label>
+          <TaskGrid>
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+          </TaskGrid>
+          <Label icon={<DoneIcon />}>Completed</Label>
+          <TaskGrid>
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+            <TaskCard />
+          </TaskGrid>
+        </Tasks>
+      </Container>
+    );
+  }
+}
+
 export default ProjectDetailsTemplate;

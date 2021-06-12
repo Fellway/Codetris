@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PlusIcon from 'assets/add.svg';
 import { theme } from '../../../theme/MainTheme';
 
-const AddButton = styled.div`
+const AddButton = styled.button`
   height: 80px;
   width: 80px;
   background-image: url(${PlusIcon});
@@ -11,6 +11,7 @@ const AddButton = styled.div`
   background-color: ${theme.colors.primary};
   background-position: center center;
   border-radius: 50%;
+  border-color: transparent;
   position: fixed;
   bottom: 5%;
   right: 5%;

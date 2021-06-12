@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { theme } from 'theme/MainTheme';
 import Header from '../../atoms/Header/Header';
 import UserIcon from '../../../assets/user.svg';
@@ -7,7 +8,11 @@ import Input from '../../atoms/Input/Input';
 import Textarea from '../../atoms/Textarea/Textarea';
 import Button from '../../atoms/Button/Button';
 
-const ModalWrapper = styled.div`
+const Wrapper = styled.div`
+  position: fixed;
+`;
+
+const Background = styled.div`
   width: 100vw;
   height: 100vh;
   left: 0;
@@ -17,9 +22,9 @@ const ModalWrapper = styled.div`
   z-index: 20;
 `;
 
-const Wrapper = styled.div`
+const BoxWrapper = styled.div`
   position: fixed;
-  z-index: 2;
+  z-index: 20;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -72,21 +77,27 @@ const HeaderWrapper = styled.header`
   position: relative;
 `;
 
-const CloseButton = styled.div`
+const CloseButton = styled.button`
   position: absolute;
   right: 20px;
   top: 10px;
+  background: none;
+  border: none;
+  font-size: ${theme.fontSize.l};
+  color: ${theme.grey100};
+
   :hover {
     cursor: pointer;
   }
 `;
 
-const Modal = () => (
-  <ModalWrapper>
-    <Wrapper>
+const Modal = ({ onClose, onSave }) => (
+  <Wrapper>
+    <Background onClick={onClose} />
+    <BoxWrapper>
       <HeaderWrapper>
         <Header s>Add new project</Header>
-        <CloseButton>✖</CloseButton>
+        <CloseButton onClick={onClose}>✖</CloseButton>
       </HeaderWrapper>
       <Form>
         <InputWithLabel>
@@ -120,11 +131,18 @@ const Modal = () => (
         <div>
           <span />
         </div>
-        <StyledButton>Discard</StyledButton>
-        <StyledButton primary>Create</StyledButton>
+        <StyledButton onClick={onClose}>Discard</StyledButton>
+        <StyledButton onClick={onSave} primary>
+          Create
+        </StyledButton>
       </Footer>
-    </Wrapper>
-  </ModalWrapper>
+    </BoxWrapper>
+  </Wrapper>
 );
 
 export default Modal;
+
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
+};
