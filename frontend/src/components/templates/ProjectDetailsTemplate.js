@@ -14,6 +14,7 @@ import TaskCard from 'components/molecules/TaskCard/TaskCard';
 import DoneIcon from '@material-ui/icons/DoneOutlined';
 import AutorenewIcon from '@material-ui/icons/AutorenewOutlined';
 import AssignmentIcon from '@material-ui/icons/AssignmentOutlined';
+import Modal from '../molecules/Modal/Modal';
 
 const Wrapper = styled.div`
   color: ${theme.grey200};
@@ -81,6 +82,7 @@ const TaskGrid = styled.div`
 
 const ProjectDetailsTemplate = () => (
   <Container>
+    <Modal />
     <Wrapper>
       <NameWrapper>
         <StyledAvatar url="https://i.pinimg.com/736x/94/40/b7/9440b7c3ab43d66b06bed08af7b02434.jpg" />

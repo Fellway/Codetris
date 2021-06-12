@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import PropTypes from 'prop-types';
 import Header from '../atoms/Header/Header';
 import ProjectCard from '../molecules/ProjectCard/ProjectCard';
+import AddButton from '../atoms/AddButton/AddButton';
 
 const Wrapper = styled.div`
   padding-right: 40px;
@@ -50,6 +51,7 @@ const ProjectsTemplate = ({ projects }) => (
         );
       })}
     </CardGrid>
+    <AddButton />
   </Wrapper>
 );
 

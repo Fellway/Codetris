@@ -4,9 +4,11 @@ import { theme } from 'theme/MainTheme';
 const Button = styled.button`
   width: 200px;
   height: 45px;
-  border-radius: 50px;
-  background: rgb(130, 77, 255);
-  background: linear-gradient(90deg, ${theme.colors.primary} 20%, ${theme.colors.secondary} 91%);
+  border-radius: 20px;
+  background: ${({ gradient }) =>
+    gradient
+      ? `linear-gradient(90deg, ${theme.colors.primary} 20%, ${theme.colors.secondary} 91%)`
+      : `${theme.colors.primary}`};
   border: none;
   font-weight: ${theme.fontWeight.bold};
   font-size: ${theme.fontSize.s};
