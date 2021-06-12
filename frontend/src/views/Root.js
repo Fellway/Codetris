@@ -13,6 +13,9 @@ import ProjectDetails from 'views/ProjectDetails';
 import Calendar from './Calendar';
 import Tasks from './Tasks';
 import Settings from './Settings';
+import Notifications from './Notifications';
+import Emails from './Emails';
+import Chat from './Chat';
 
 function App() {
   return (
@@ -27,6 +30,9 @@ function App() {
               <PrivateRoute exact path="/calendar" component={Calendar} />
               <PrivateRoute exact path="/tasks" component={Tasks} />
               <PrivateRoute exact path="/settings" component={Settings} />
+              <PrivateRoute exact path="/notifications" component={Notifications} />
+              <PrivateRoute exact path="/emails" component={Emails} />
+              <PrivateRoute exact path="/chat" component={Chat} />
               <PrivateRoute exact path="/projects" component={Projects} />
               <PrivateRoute exact path="/projects/:id" component={ProjectDetails} />
               <PrivateRoute exact path="/logout" component={Login} />
