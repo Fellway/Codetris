@@ -1,11 +1,15 @@
 import React from 'react';
+
 import UserPageTemplate from '../components/templates/UserPageTemplate';
-import DashboardTemplate from '../components/templates/DashboardTemplate';
+import CalendarComponent from '../components/organisms/Calendar/Calendar';
+import CalendarTemplate from '../components/templates/CalendarTemplate';
 
 const Calendar = () => (
   <>
     <UserPageTemplate>
-      <DashboardTemplate />
+      <CalendarTemplate>
+        <CalendarComponent />
+      </CalendarTemplate>
     </UserPageTemplate>
   </>
 );

@@ -1,6 +1,7 @@
 export const theme = {
   colors: {
     primary: 'hsl(256,93%,61%)',
+    primaryOpacity: 'hsla(256,93%,61%, 0.5)',
     secondary: 'hsl(228, 91%, 60%)',
     tertiary: 'hsl(106, 47%, 64%)',
     red: 'hsl(0, 100%, 42%)',
@@ -20,6 +21,7 @@ export const theme = {
   white: 'hsl(0, 0%, 90%)',
   black: 'hsl(0, 0%, 26%)',
   fontSize: {
+    xxs: '0.5rem',
     xs: '0.8rem',
     s: '1rem',
     m: '1.2rem',

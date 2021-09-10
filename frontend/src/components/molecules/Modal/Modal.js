@@ -2,14 +2,40 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { theme } from 'theme/MainTheme';
+import 'date-fns';
+import CloseIcon from '@material-ui/icons/Close';
+import { TextareaAutosize } from '@material-ui/core';
 import Header from '../../atoms/Header/Header';
-import UserIcon from '../../../assets/user.svg';
-import Input from '../../atoms/Input/Input';
-import Textarea from '../../atoms/Textarea/Textarea';
 import Button from '../../atoms/Button/Button';
+import DatePicker from '../DatePicker/DatePicker';
+import BasicInput from '../../atoms/Input/BasicInput';
 
 const Wrapper = styled.div`
   position: fixed;
+
+  .textarea {
+    background-color: transparent;
+    border: none;
+  }
+
+  input,
+  svg,
+  .textarea {
+    color: ${theme.grey200};
+    font-size: ${theme.fontSize.s};
+  }
+
+  .MuiInput-underline {
+    :before {
+      border-bottom-color: ${theme.grey200};
+    }
+  }
+
+  .MuiInput-underline {
+    :hover:not(.Mui-disabled):before {
+      border-bottom-color: ${theme.colors.primary} !important;
+    }
+  }
 `;
 
 const Background = styled.div`
@@ -80,11 +106,16 @@ const HeaderWrapper = styled.header`
 const CloseButton = styled.button`
   position: absolute;
   right: 20px;
-  top: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   font-size: ${theme.fontSize.l};
   color: ${theme.grey100};
+
+  svg {
+    font-size: ${theme.fontSize.l};
+  }
 
   :hover {
     cursor: pointer;
@@ -101,33 +132,34 @@ const Modal = ({ onClose, onSave }) => (
     <BoxWrapper>
       <HeaderWrapper>
         <Header s>Add new project</Header>
-        <CloseButton onClick={onClose}>✖</CloseButton>
+        <CloseButton aria-label="close" onClick={onClose}>
+          <CloseIcon />
+        </CloseButton>
       </HeaderWrapper>
       <Form>
         <InputWithLabel>
           <Label>Name:</Label>
-          <Input type="text" name="username" icon={UserIcon} placeholder="Hello world" />
+          <BasicInput placeholder="Provide title of event" />
         </InputWithLabel>
         <InputWithLabel>
           <Label>Website:</Label>
-          <Input type="text" name="username" icon={UserIcon} placeholder="Hello world" />
+          <BasicInput placeholder="Project website" />
         </InputWithLabel>
         <InputWithLabel>
           <Label>Start date:</Label>
-          <Input type="date" name="username" icon={UserIcon} placeholder="Hello world" />
+          <DatePicker />
         </InputWithLabel>
         <InputWithLabel>
           <Label>End date:</Label>
-          <Input type="date" name="username" icon={UserIcon} placeholder="Hello world" />
+          <DatePicker />
         </InputWithLabel>
         <InputWithLabel>
           <Label>Description:</Label>
-          <Textarea
-            rows="20"
-            type="text"
-            name="username"
-            icon={UserIcon}
-            placeholder="Hello world"
+          <TextareaAutosize
+            minRows="5"
+            className="textarea"
+            aria-label="empty textarea"
+            placeholder="Put description of the project"
           />
         </InputWithLabel>
       </Form>

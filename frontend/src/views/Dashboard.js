@@ -1,11 +1,12 @@
 import React from 'react';
+import DemoDashboardImage from 'assets/dashboard-demo.png';
 import UserPageTemplate from '../components/templates/UserPageTemplate';
-import DashboardTemplate from '../components/templates/DashboardTemplate';
+import RawTemplate from '../components/templates/RawTemplate';
 
 const Dashboard = () => (
   <>
     <UserPageTemplate>
-      <DashboardTemplate />
+      <RawTemplate image={DemoDashboardImage} />
     </UserPageTemplate>
   </>
 );

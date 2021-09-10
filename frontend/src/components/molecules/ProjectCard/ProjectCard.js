@@ -42,7 +42,7 @@ const StyledParagraph = styled(Paragraph)`
 
 const Footer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 0.5fr;
   margin-top: 20px;
   align-items: center;
 `;

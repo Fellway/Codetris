@@ -10,7 +10,7 @@ const StyledAvatar = styled(Avatar)`
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 `;
 
 const More = styled.div`
@@ -29,7 +29,6 @@ const Contributors = () => (
     <StyledAvatar url="https://picsum.photos/id/237/200" />
     <StyledAvatar url="https://picsum.photos/id/238/200" />
     <StyledAvatar url="https://picsum.photos/id/254/200" />
-    <StyledAvatar url="https://picsum.photos/id/255/200" />
     <More>+2</More>
   </Wrapper>
 );

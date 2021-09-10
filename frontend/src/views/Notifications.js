@@ -1,11 +1,11 @@
 import React from 'react';
 import UserPageTemplate from '../components/templates/UserPageTemplate';
-import DashboardTemplate from '../components/templates/DashboardTemplate';
+import RawTemplate from '../components/templates/RawTemplate';
 
 const Notifications = () => (
   <>
     <UserPageTemplate>
-      <DashboardTemplate />
+      <RawTemplate />
     </UserPageTemplate>
   </>
 );

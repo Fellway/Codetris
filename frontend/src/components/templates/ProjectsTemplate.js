@@ -5,21 +5,13 @@ import PropTypes from 'prop-types';
 import Header from '../atoms/Header/Header';
 import ProjectCard from '../molecules/ProjectCard/ProjectCard';
 import AddButton from '../atoms/AddButton/AddButton';
+import CardGrid from '../molecules/CardGrid/CardGrid';
 import Modal from '../molecules/Modal/Modal';
 import Sort from '../molecules/Sort/Sort';
 
 const Wrapper = styled.div`
   padding-right: 40px;
   padding-bottom: 50px;
-`;
-
-const CardGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  @media (max-width: 1020px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  grid-gap: 50px;
 `;
 
 const ToolBar = styled.div`
